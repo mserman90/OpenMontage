@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenMontage Studio — World's First Agentic Video Production System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="glow-atmosphere"></div>
+
+  <!-- Header Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="/" class="brand-link">
+        <svg class="brand-logo-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-7 2.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM8 15l2.5-3.01L13 15l3.5-4.5 4.5 6H6l2-3.5z"/>
+        </svg>
+        <span class="brand-name">OpenMontage</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#studioSection">Studio</a></li>
+        <li><a href="#showcaseSection">Creations</a></li>
+        <li><a href="#featuresSection">Philosophy</a></li>
+        <li><a href="/p/backlot-demo-run" target="_blank">Backlot Board</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://github.com/mserman90/OpenMontage" target="_blank" class="btn-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>Star on GitHub</span>
+        </a>
+        <a href="#studioSection" class="btn-primary">Launch Studio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section">
+      <div class="hero-pill-badge">
+        <span>●</span> Open-Source Agentic Video Production Studio
+      </div>
+
+      <h1 class="hero-headline">
+        Your ideas. A whole<br>studio to make them.
+      </h1>
+
+      <p class="hero-subhead">
+        Turn your ideas into finished films. Describe what you want in plain language — our agentic pipeline handles research, screenplay, visual art, audio direction, and Remotion composition.
+      </p>
+
+      <!-- Input Studio Box -->
+      <div class="studio-input-box">
+        <div class="studio-input-header">
+          <div class="studio-input-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>PROMPT THE DIRECTOR</span>
+          </div>
+          <span class="badge-keyless">✨ Free & Keyless AI Mode Enabled</span>
+        </div>
+
+        <textarea
+          id="promptInput"
+          class="input-prompt-area"
+          placeholder="e.g. Make a 60-second animated explainer about quantum computing and neural learning..."
+        >A 60-second cinematic documentary about the mineral that funded empires: How Salt Made History.</textarea>
+
+        <div class="studio-controls-bar">
+          <div class="pipeline-pills">
+            <button class="pill-option active" data-pipeline="explainer">Explainer</button>
+            <button class="pill-option" data-pipeline="documentary">Documentary</button>
+            <button class="pill-option" data-pipeline="kinetic-typography">Kinetic Typography</button>
+            <button class="pill-option" data-pipeline="showcase">3D Showcase</button>
+            <button class="pill-option" data-pipeline="animation">Pixar Animation</button>
+          </div>
+
+          <button id="generateBtn" class="btn-generate">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Generate Video Production
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Starter Prompt Chips -->
+      <div class="quick-prompt-chips">
+        <span class="chip-label">Starter Prompts:</span>
+        <button class="prompt-chip" data-prompt="A 60-second cinematic sci-fi trailer titled SIGNAL FROM TOMORROW.">Signal From Tomorrow (Sci-Fi Trailer)</button>
+        <button class="prompt-chip" data-prompt="A 60-second Pixar-style animated short about a lonely banana who finds friendship with a kiwi.">The Last Banana (Animated Short)</button>
+        <button class="prompt-chip" data-prompt="A 50-second music-driven showcase of 10 gravity-shifting objects with kinetic typography.">Objects in Overdrive (3D Phonk)</button>
+        <button class="prompt-chip" data-prompt="A 60-second developer workflow explainer with comparison and KPI cards.">Code to Screen (Dev Explainer)</button>
+      </div>
+    </section>
+
+    <!-- Studio Workstation Section -->
+    <section id="studioSection" class="studio-workstation-section">
+      <div class="studio-main-card">
+        <div class="studio-card-bar">
+          <div class="window-dots">
+            <div class="window-dot red"></div>
+            <div class="window-dot yellow"></div>
+            <div class="window-dot green"></div>
+          </div>
+          <span id="projectTitleBadge" style="font-size:0.85rem;font-weight:600;color:#fdba74;">OpenMontage Studio (Active Production)</span>
+          <div class="studio-tabs">
+            <button class="studio-tab-btn active">Storyboard</button>
+            <button class="studio-tab-btn">Screenplay</button>
+            <button class="studio-tab-btn">Living Backlot</button>
+          </div>
+        </div>
+
+        <div class="studio-workspace-grid">
+          <!-- Sidebar -->
+          <div class="studio-sidebar">
+            <div>
+              <div class="sidebar-title">Pipeline Stages</div>
+              <div class="timeline-stages">
+                <div class="stage-item completed">✓ 01. Research & Script</div>
+                <div class="stage-item completed">✓ 02. Scene Plan & Storyboard</div>
+                <div class="stage-item active">● 03. Generative Asset Assembly</div>
+                <div class="stage-item">○ 04. Voice & Audio Direction</div>
+                <div class="stage-item">○ 05. Remotion Render Engine</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="sidebar-title">Autonomous Capabilities</div>
+              <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.5;">
+                Zero API keys required. Free generative art powered by Pollinations, narration via Web Speech & Piper TTS, rendering via local Remotion React stack.
+              </p>
+            </div>
+          </div>
+
+          <!-- Viewport -->
+          <div class="studio-viewport">
+            <div>
+              <div class="sidebar-title" style="margin-bottom:1rem;">Production Filmstrip & Scene Takes</div>
+              <div id="sceneFilmstrip" class="scene-filmstrip-container">
+                <!-- Dynamically populated or default scenes -->
+                <div class="scene-card-item">
+                  <img class="scene-thumb-img" src="https://image.pollinations.ai/prompt/ancient salt mines cinematic historical documentary dramatic lighting 16:9?width=640&height=360&nologo=true&seed=1" alt="Scene 1">
+                  <div class="scene-card-content">
+                    <div class="scene-card-badge">SCENE 1 • 0.0s - 12.0s</div>
+                    <strong style="display:block;font-size:0.85rem;margin-bottom:0.25rem;">THE WHITE GOLD</strong>
+                    <p class="scene-narration-preview">Before currency, there was salt. Empires rose and collapsed around its trade.</p>
+                  </div>
+                </div>
+                <div class="scene-card-item">
+                  <img class="scene-thumb-img" src="https://image.pollinations.ai/prompt/caravans crossing sahara desert with salt blocks sunset cinematic 16:9?width=640&height=360&nologo=true&seed=2" alt="Scene 2">
+                  <div class="scene-card-content">
+                    <div class="scene-card-badge">SCENE 2 • 12.0s - 24.0s</div>
+                    <strong style="display:block;font-size:0.85rem;margin-bottom:0.25rem;">TRADE ROUTES OF ANTIQUITY</strong>
+                    <p class="scene-narration-preview">Roman soldiers were paid in salt rations—giving birth to the word salary.</p>
+                  </div>
+                </div>
+                <div class="scene-card-item">
+                  <img class="scene-thumb-img" src="https://image.pollinations.ai/prompt/macro shot of glowing salt crystal cube modern cinematic lighting 16:9?width=640&height=360&nologo=true&seed=3" alt="Scene 3">
+                  <div class="scene-card-content">
+                    <div class="scene-card-badge">SCENE 3 • 24.0s - 36.0s</div>
+                    <strong style="display:block;font-size:0.85rem;margin-bottom:0.25rem;">THE MODERN REVOLUTION</strong>
+                    <p class="scene-narration-preview">Today, this humble mineral powers global industry, biology, and chemistry.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Studio Video Player -->
+            <div>
+              <div class="sidebar-title" style="margin-bottom:0.75rem;">Live Remotion Render Preview</div>
+              <div style="background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--border-subtle);aspect-ratio:16/9;max-height:380px;">
+                <video id="mainStudioVideo" src="/renders/code-to-screen.mp4" controls style="width:100%;height:100%;object-fit:contain;"></video>
+              </div>
+            </div>
+
+            <!-- Terminal Output -->
+            <div>
+              <div class="sidebar-title" style="margin-bottom:0.5rem;">Director Activity Console</div>
+              <div id="terminalConsole" class="studio-terminal-console">
+                <div>[SYSTEM] OpenMontage Studio Initialized.</div>
+                <div>[ENGINE] Remotion React composer linked.</div>
+                <div>[GATEWAY] Free keyless generation active (Pollinations AI + Wikimedia Commons).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Creations Gallery Showcase Section -->
+    <section id="showcaseSection" class="section-showcase">
+      <h2 class="section-title">Get to your next creation now</h2>
+      <p class="section-subtitle">
+        Real cinematic renders built entirely from code and agentic pipelines. No manual timeline editing required.
+      </p>
+
+      <div id="galleryGrid" class="gallery-grid">
+        <!-- Rendered videos dynamically injected here -->
+      </div>
+    </section>
+
+    <!-- Cream Light Section - Philosophy & Features -->
+    <section id="featuresSection" class="cream-section">
+      <div class="cream-container">
+        <h2 class="cream-headline">
+          Start with an idea or<br>something you already have.<br>
+          <em>One workspace. Every step yours to direct.</em>
+        </h2>
+        <p class="cream-subhead">
+          OpenMontage is not just an API wrapper. It is a full agentic studio combining 12 distinct production pipelines, 100+ tools, and multi-point self-review verification.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-number">01 / DISCOVERY</div>
+            <h3 class="feature-title">Your workspace. Your choice of agent.</h3>
+            <p class="feature-desc">
+              Works seamlessly with Claude Code, Cursor, Copilot, Windsurf, or as a standalone web workstation. Every pipeline decision is transparent, traceable, and editable.
+            </p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-number">02 / KEYLESS FREEDOM</div>
+            <h3 class="feature-title">Free & Open-Source First</h3>
+            <p class="feature-desc">
+              Zero mandatory API keys. Out of the box, synthesize speech with Piper and Web Speech, generate free art with Pollinations, retrieve public domain footage, and compose with Remotion.
+            </p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-number">03 / REAL VIDEO</div>
+            <h3 class="feature-title">Real motion, not still slideshows</h3>
+            <p class="feature-desc">
+              Builds a corpus from free stock footage and open archives, edits actual motion clips into the timeline, burns in word-level animated subtitles, and renders via FFmpeg & React Remotion.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <h2 class="footer-headline">Be on the crew.</h2>
+        <p class="footer-subhead">
+          Turn your AI coding assistant into a full video production studio today.
+        </p>
+        <a href="#studioSection" class="btn-primary" style="font-size:1.05rem;padding:0.85rem 2.2rem;">Start Directing Now</a>
+
+        <div class="footer-links-row">
+          <a href="https://github.com/mserman90/OpenMontage" target="_blank">GitHub Repository</a>
+          <span>•</span>
+          <a href="https://openmontage.video" target="_blank">Official Website</a>
+          <span>•</span>
+          <a href="/p/backlot-demo-run" target="_blank">Backlot Storyboard</a>
+          <span>•</span>
+          <span>AGPLv3 License</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
