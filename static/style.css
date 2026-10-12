@@ -145,6 +145,29 @@ body {
   border-color: var(--border-accent);
 }
 
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: #fdba74;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(249, 115, 22, 0.15);
+  border-color: var(--accent-amber);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;

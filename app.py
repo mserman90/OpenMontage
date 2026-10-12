@@ -58,6 +58,7 @@ class GenerateScriptRequest(BaseModel):
     duration: int = 60
     aspect_ratio: str = "16:9"
     style: str = "Cinematic Documentary"
+    lang: str = "en"  # "en" or "tr"
 
 
 class SearchMediaRequest(BaseModel):
@@ -73,59 +74,106 @@ class RenderRequest(BaseModel):
 # FREE & KEYLESS AI SERVICES
 # -----------------------------------------------------------------------------
 
-def _generate_keyless_script(prompt: str, pipeline: str, duration: int, style: str) -> Dict[str, Any]:
+def _generate_keyless_script(prompt: str, pipeline: str, duration: int, style: str, lang: str = "en") -> Dict[str, Any]:
     """Generates a structured, production-ready video script and scene plan without requiring any API keys."""
-    clean_prompt = prompt.strip() or "The Future of Autonomous AI Studios"
+    is_tr = (lang.lower() == "tr")
+    clean_prompt = prompt.strip() or ("Otonom Yapay Zeka Video Stüdyolarının Geleceği" if is_tr else "The Future of Autonomous AI Studios")
     title_words = clean_prompt.split()[:5]
     title = " ".join(title_words).title()
 
     scene_count = max(3, min(6, duration // 12))
     scenes = []
 
-    templates = [
-        {
-            "role": "Hook & Cold Open",
-            "voice": f"Imagine a world where your raw imagination translates directly into film. {clean_prompt}.",
-            "visual_prompt": f"hyperrealistic cinematic master shot, {clean_prompt}, dramatic volumetric lighting, 8k octane render",
-            "card_text": "THE REVOLUTION BEGINS",
-            "type": "motion_graphic"
-        },
-        {
-            "role": "The Core Conflict / Problem",
-            "voice": "Traditional production demanded months of manual labor, endless gear, and prohibitive budgets.",
-            "visual_prompt": f"moody film noir scene, intricate gears and digital nodes, cinematic shadows, {clean_prompt}",
-            "card_text": "LIMITATIONS DEFIED",
-            "type": "b_roll"
-        },
-        {
-            "role": "The Breakthrough",
-            "voice": "Agentic video pipelines now orchestrate every stage: researching, scripting, generating, and composing.",
-            "visual_prompt": f"luminous neural network architecture floating in space, holographic UI, {clean_prompt}",
-            "card_text": "12 PRODUCTION PIPELINES",
-            "type": "chart_or_kpi"
-        },
-        {
-            "role": "Transformation & Acceleration",
-            "voice": "From text prompts to finished motion clips in seconds. Zero friction, zero vendor lock-in.",
-            "visual_prompt": f"futuristic film editing timeline expanding into light particles, photorealistic, {clean_prompt}",
-            "card_text": "ZERO LATENCY WORKFLOW",
-            "type": "comparison"
-        },
-        {
-            "role": "Resolution & Future Outlook",
-            "voice": "This is not just automated assembly. It is authored cinema at your fingertips.",
-            "visual_prompt": f"breathtaking wide landscape at sunrise with futuristic observatory, inspiring cinematic photography",
-            "card_text": "YOUR STUDIO AWAITS",
-            "type": "motion_graphic"
-        },
-        {
-            "role": "Climax & Call to Action",
-            "voice": f"OpenMontage Studio. Describe what you see, and watch the timeline construct itself.",
-            "visual_prompt": f"sleek clapperboard closing with neon sparks, professional film studio background, {clean_prompt}",
-            "card_text": "CREATE NOW",
-            "type": "title_card"
-        }
-    ]
+    if is_tr:
+        templates = [
+            {
+                "role": "Kanca & Giriş Sahnesi",
+                "voice": f"Hayal gücünüzün doğrudan sinematik bir filme dönüştüğü bir dünya düşünün. {clean_prompt}.",
+                "visual_prompt": f"hyperrealistic cinematic master shot, {clean_prompt}, dramatic volumetric lighting, 8k octane render",
+                "card_text": "YENİ DÖNEM BAŞLIYOR",
+                "type": "motion_graphic"
+            },
+            {
+                "role": "Sorun & Geleneksel Üretim Zorlukları",
+                "voice": "Geleneksel video prodüksiyonu aylar süren çekimler, pahalı kameralar ve yüksek bütçeler gerektiriyordu.",
+                "visual_prompt": f"moody film noir scene, intricate gears and digital nodes, cinematic shadows, {clean_prompt}",
+                "card_text": "SINIRLAR AŞILIYOR",
+                "type": "b_roll"
+            },
+            {
+                "role": "Yapay Zeka & Ajan Tabanlı Çözüm",
+                "voice": "Otonom video hatları artık her adımı yönetiyor: araştırma, senaryo, görsel üretimi ve kurgu.",
+                "visual_prompt": f"luminous neural network architecture floating in space, holographic UI, {clean_prompt}",
+                "card_text": "12 ÜRETİM BORU HATTI",
+                "type": "chart_or_kpi"
+            },
+            {
+                "role": "Dönüşüm ve Hızlanma",
+                "voice": "Metin komutlarından saniyeler içinde hazır video sahnelerine. Sıfır bekleme, sıfır karmaşa.",
+                "visual_prompt": f"futuristic film editing timeline expanding into light particles, photorealistic, {clean_prompt}",
+                "card_text": "KESİNTİSİZ İŞ AKIŞI",
+                "type": "comparison"
+            },
+            {
+                "role": "Çözüm ve Gelecek Vizyonu",
+                "voice": "Bu sadece otomatik bir montaj değil; parmaklarınızın ucundaki tam teşekküllü bir yönetmen stüdyosu.",
+                "visual_prompt": f"breathtaking wide landscape at sunrise with futuristic observatory, inspiring cinematic photography",
+                "card_text": "STÜDYONUZ HAZIR",
+                "type": "motion_graphic"
+            },
+            {
+                "role": "Sonuç & Eyleme Çağrı",
+                "voice": f"OpenMontage Stüdyosu. Aklınızdakini anlatın ve zaman çizelgesinin kendi kendine oluşmasını izleyin.",
+                "visual_prompt": f"sleek clapperboard closing with neon sparks, professional film studio background, {clean_prompt}",
+                "card_text": "ŞİMDİ ÜRETİN",
+                "type": "title_card"
+            }
+        ]
+    else:
+        templates = [
+            {
+                "role": "Hook & Cold Open",
+                "voice": f"Imagine a world where your raw imagination translates directly into film. {clean_prompt}.",
+                "visual_prompt": f"hyperrealistic cinematic master shot, {clean_prompt}, dramatic volumetric lighting, 8k octane render",
+                "card_text": "THE REVOLUTION BEGINS",
+                "type": "motion_graphic"
+            },
+            {
+                "role": "The Core Conflict / Problem",
+                "voice": "Traditional production demanded months of manual labor, endless gear, and prohibitive budgets.",
+                "visual_prompt": f"moody film noir scene, intricate gears and digital nodes, cinematic shadows, {clean_prompt}",
+                "card_text": "LIMITATIONS DEFIED",
+                "type": "b_roll"
+            },
+            {
+                "role": "The Breakthrough",
+                "voice": "Agentic video pipelines now orchestrate every stage: researching, scripting, generating, and composing.",
+                "visual_prompt": f"luminous neural network architecture floating in space, holographic UI, {clean_prompt}",
+                "card_text": "12 PRODUCTION PIPELINES",
+                "type": "chart_or_kpi"
+            },
+            {
+                "role": "Transformation & Acceleration",
+                "voice": "From text prompts to finished motion clips in seconds. Zero friction, zero vendor lock-in.",
+                "visual_prompt": f"futuristic film editing timeline expanding into light particles, photorealistic, {clean_prompt}",
+                "card_text": "ZERO LATENCY WORKFLOW",
+                "type": "comparison"
+            },
+            {
+                "role": "Resolution & Future Outlook",
+                "voice": "This is not just automated assembly. It is authored cinema at your fingertips.",
+                "visual_prompt": f"breathtaking wide landscape at sunrise with futuristic observatory, inspiring cinematic photography",
+                "card_text": "YOUR STUDIO AWAITS",
+                "type": "motion_graphic"
+            },
+            {
+                "role": "Climax & Call to Action",
+                "voice": f"OpenMontage Studio. Describe what you see, and watch the timeline construct itself.",
+                "visual_prompt": f"sleek clapperboard closing with neon sparks, professional film studio background, {clean_prompt}",
+                "card_text": "CREATE NOW",
+                "type": "title_card"
+            }
+        ]
 
     time_per_scene = duration / scene_count
     current_time = 0.0
@@ -187,7 +235,7 @@ async def health():
 
 @app.post("/api/script/generate")
 async def generate_script(req: GenerateScriptRequest):
-    data = _generate_keyless_script(req.prompt, req.pipeline, req.duration, req.style)
+    data = _generate_keyless_script(req.prompt, req.pipeline, req.duration, req.style, req.lang)
     return JSONResponse(content=data)
 
 
